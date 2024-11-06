@@ -56,7 +56,7 @@ export class TariffListComponent {
   }
 
   addToCompare(tariff: Tariff) {
-    // Logic to add tariff to comparison list  
+    this.tariffService.updateTariff(tariff) 
   }
 
 }

@@ -4,12 +4,14 @@
     <button (click)="sortTariffs()">
       Sort by Price ({{ sortAscending ? 'Ascending' : 'Descending' }})
     </button>
-  <table class="table mb-0 bg-white">
+  <table class="table">
     <thead class="bg-light">
       <tr>
-        <th>Name</th>
-        <th>Supplier </th> 
-        <th>Selecting to Compare</th> 
+        <th scope="col">Name</th>
+        <th scope="col">Price</th> 
+        <th scope="col">Supplier </th> 
+        <th scope="col">Description</th>
+        <th scope="col">Selecting to Compare</th> 
       </tr>
     </thead>
     <tbody>
@@ -21,8 +23,8 @@
           <p class="fw-normal mb-1">{{tariff.supplier}}</p>
         </td>
         <td>
-          <button *ngIf="tariff.selected" class="badge badge-success rounded-pill d-inline">Active</button>
-          <button *ngIf="!tariff.selected" class="badge badge-warning rounded-pill d-inline">Awaiting</button>
+          <button *ngIf="tariff.selected"  type="button" class="btn btn-success">Active</button>
+          <button *ngIf="!tariff.selected" type="button" class="btn btn-secondary" (click)="">Awaiting</button>
         </td>
       </tr>
     </tbody>
