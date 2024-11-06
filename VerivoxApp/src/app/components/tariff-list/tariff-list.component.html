@@ -1,0 +1,30 @@
+<div class="tariff-list">
+    <h4>Available Tariffs</h4>
+  
+    <button (click)="sortTariffs()">
+      Sort by Price ({{ sortAscending ? 'Ascending' : 'Descending' }})
+    </button>
+  <table class="table mb-0 bg-white">
+    <thead class="bg-light">
+      <tr>
+        <th>Name</th>
+        <th>Supplier </th> 
+        <th>Selecting to Compare</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tariff of tariffs$ | async">
+        <td class="ms-3">
+              <p class="fw-bold mb-1">{{tariff.name}}</p> 
+        </td>
+        <td>
+          <p class="fw-normal mb-1">{{tariff.supplier}}</p>
+        </td>
+        <td>
+          <button *ngIf="tariff.selected" class="badge badge-success rounded-pill d-inline">Active</button>
+          <button *ngIf="!tariff.selected" class="badge badge-warning rounded-pill d-inline">Awaiting</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
