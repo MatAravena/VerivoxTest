@@ -23,9 +23,13 @@ export class TariffService {
         return this.tariffs$;
     }
 
-    updateTariff(tariffModify: Tariff ){
-        return this.getListTariffs().pipe(
-            map((tariffs) => tariffs.find((tariff) => tariff.selected === tariffModify.selected)));
+    updateTariff(updatedTariff: Tariff ){ 
+        const currentTariffs = this.tariffs$.getValue();
+        const index = currentTariffs.findIndex(tariff => tariff.id === updatedTariff.id);
+        if (index !== -1) { 
+            currentTariffs[index] = updatedTariff;
+            this.tariffs$.next([...currentTariffs]);
+        }
     }
 
     getAllTariffs(): Observable<Tariff[]> {

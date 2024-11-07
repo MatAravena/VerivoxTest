@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes), 
     provideClientHydration(),
 
-    ///New providers
+    ///New providers 
     provideHttpClient(),
     importProvidersFrom(
       HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, 

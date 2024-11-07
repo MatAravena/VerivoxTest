@@ -1,0 +1,22 @@
+/* Base styles for all devices */
+.container {
+    width: 95%;
+    padding: 16px;
+  
+    /* Mobile Styles */
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
+  
+    /* Tablet Styles */
+    @media (min-width: 600px) and (max-width: 1024px) {
+      flex-direction: row;
+    }
+  
+    /* Desktop Styles */
+    @media (min-width: 1024px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+}
+

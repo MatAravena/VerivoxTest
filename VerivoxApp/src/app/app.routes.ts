@@ -5,5 +5,5 @@ import { TariffComparitionComponent } from './components/tariff-comparition/tari
 export const routes: Routes = [
     {path: '' , pathMatch: 'full', redirectTo: 'list'},
     {path: 'list' , component: TariffListComponent },
-    {path: 'comparition' , component: TariffComparitionComponent },
+    {path: 'compare' , component: TariffComparitionComponent },
 ];

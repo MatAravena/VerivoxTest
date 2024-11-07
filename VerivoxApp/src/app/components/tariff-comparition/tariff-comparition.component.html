@@ -1,1 +1,33 @@
-<p>tariff-comparition works!</p>
+
+<div class="mainContainer"> 
+    <div class="compare-container" *ngIf="tariffs$.length > 0">
+        <h2>Compare Selected Tariffs</h2>
+    
+        <!-- Comparison Table -->
+        <div class="tariff-comparison">
+        <div class="header-row">
+            <div class="header-cell">Feature</div>
+            <div class="header-cell" *ngFor="let tariff of tariffs$">{{ tariff.name }}</div>
+        </div>
+    
+        <div class="detail-row">
+            <div class="detail-cell">Price</div>
+            <div class="detail-cell" *ngFor="let tariff of tariffs$">{{ tariff.price }} €</div>
+        </div>
+    
+        <div class="detail-row">
+            <div class="detail-cell">Supplier</div>
+            <div class="detail-cell" *ngFor="let tariff of tariffs$">{{ tariff.supplier }}</div>
+        </div>
+    
+        <div class="detail-row">
+            <div class="detail-cell">Description</div>
+            <div class="detail-cell" *ngFor="let tariff of tariffs$">{{ tariff.description }}</div>
+        </div>
+    
+        <!-- Add more rows as needed for other tariff features -->
+        </div>
+    </div>
+    
+    <p *ngIf="tariffs$.length === 0">No tariffs selected for comparison.</p>
+</div>

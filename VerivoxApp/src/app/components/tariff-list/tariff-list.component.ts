@@ -2,14 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TariffService } from '../../services/tariff/tariff-service.service';
-import { Tariff } from '../../models/tariff';
-import { HttpClientModule } from '@angular/common/http';
+import { Tariff } from '../../models/tariff'; 
 import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tariff-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, HttpClientModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './tariff-list.component.html',
   styleUrl: './tariff-list.component.scss',
   providers: [TariffService]
@@ -22,10 +21,7 @@ export class TariffListComponent {
 
   ngOnInit() { 
     this.getListTariffs();
-    this.tariffService.getAllTariffs().pipe(
-      
-    )
-
+    // this.tariffService.getAllTariffs().pipe()
   }
 
   getListTariffs() {
@@ -56,7 +52,13 @@ export class TariffListComponent {
   }
 
   addToCompare(tariff: Tariff) {
-    this.tariffService.updateTariff(tariff) 
-  }
+    let totalSelected = 0
+    this.tariffs$.pipe(map(tariffs => tariffs.filter(tariff => tariff.selected === true).length))
+      .subscribe(count => totalSelected = count);
 
+    if (totalSelected < 3 || tariff.selected ) {
+      tariff.selected = !tariff.selected
+      this.tariffService.updateTariff(tariff)
+    }
+  }
 }

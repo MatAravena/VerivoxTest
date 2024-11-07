@@ -1,32 +1,42 @@
 <div class="tariff-list">
+
+  <div class="titleSection">
     <h4>Available Tariffs</h4>
-  
+
     <button (click)="sortTariffs()">
       Sort by Price ({{ sortAscending ? 'Ascending' : 'Descending' }})
     </button>
-  <table class="table">
-    <thead class="bg-light">
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Price</th> 
-        <th scope="col">Supplier </th> 
-        <th scope="col">Description</th>
-        <th scope="col">Selecting to Compare</th> 
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let tariff of tariffs$ | async">
-        <td class="ms-3">
-              <p class="fw-bold mb-1">{{tariff.name}}</p> 
-        </td>
-        <td>
-          <p class="fw-normal mb-1">{{tariff.supplier}}</p>
-        </td>
-        <td>
-          <button *ngIf="tariff.selected"  type="button" class="btn btn-success">Active</button>
-          <button *ngIf="!tariff.selected" type="button" class="btn btn-secondary" (click)="">Awaiting</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped innerTable">
+      <thead class="bg-light">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th> 
+          <th scope="col">Supplier </th> 
+          <th scope="col">Description</th>
+          <th scope="col">Active to Compare</th> 
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tariff of tariffs$ | async" class="bg-light">
+          <th width="20%"><p class="fw-bold mb-1">{{tariff.name}}</p></th>
+          <td width="15%">
+            <p class="fw-normal mb-1">{{tariff.price}}</p>
+          </td>
+          <td width="15%">
+            <p class="fw-normal mb-1">{{tariff.supplier}}</p>
+          </td>
+          <td width="30%">
+            <p class="fw-normal mb-1">{{tariff.description}}</p>
+          </td>
+          <td width="15%">
+            <button *ngIf="!tariff.selected"  type="button" class="btn btn-success" (click)="addToCompare(tariff)">Add to Compare</button>
+            <button *ngIf="tariff.selected" type="button" class="btn btn-secondary" (click)="addToCompare(tariff)">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
