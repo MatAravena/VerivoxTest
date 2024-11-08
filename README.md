@@ -4,6 +4,23 @@ For more details, see the [Project Documentation](./Developing%20an%20Angular%20
 <br />
 <br />
 
+## Installation and Setup
+To set up the project locally, follow these steps:
+
+### Clone the repository:
+git clone https://github.com/MatAravena/VerivoxTest.git
+### Navigate to the project directory:
+cd VerivoxApp
+### Install the required dependencies:
+npm install
+### Run locally the 
+npm start
+### Test the web application
+http://localhost:4200
+
+
+<br />
+<br />
 
 ## To create docker image, use one of them
 docker build -t verivox-app .
