@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 import { TariffService } from '../../services/tariff/tariff-service.service';
 import { Tariff } from '../../models/tariff'; 
 import { map, Observable } from 'rxjs';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-tariff-list',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule],
   templateUrl: './tariff-list.component.html',
   styleUrl: './tariff-list.component.scss',
   providers: [TariffService]
@@ -16,12 +17,17 @@ import { map, Observable } from 'rxjs';
 export class TariffListComponent {
   tariffs$!: Observable<Tariff[]>;
   sortAscending: boolean = true;
+  totalSelected = 0
+  tariffForm: FormGroup;
 
-  constructor(private tariffService: TariffService) {}
+  constructor(private fb: FormBuilder, private tariffService: TariffService) {
+    this.tariffForm = this.fb.group({
+      selections: this.fb.array([])
+    });
+  }
 
   ngOnInit() { 
     this.getListTariffs();
-    // this.tariffService.getAllTariffs().pipe()
   }
 
   getListTariffs() {
@@ -30,6 +36,8 @@ export class TariffListComponent {
         tariffs.sort((a, b) => this.sortAscending ? a.price - b.price : b.price - a.price)
       )
     );
+    this.tariffs$.pipe(map(tariffs => tariffs.filter(tariff => tariff.selected === true).length))
+      .subscribe(count => this.totalSelected = count);
   }
 
   getAllTariffs() {
@@ -52,13 +60,15 @@ export class TariffListComponent {
   }
 
   addToCompare(tariff: Tariff) {
-    let totalSelected = 0
-    this.tariffs$.pipe(map(tariffs => tariffs.filter(tariff => tariff.selected === true).length))
-      .subscribe(count => totalSelected = count);
 
-    if (totalSelected < 3 || tariff.selected ) {
+    if (this.totalSelected < 3 || tariff.selected ) {
       tariff.selected = !tariff.selected
       this.tariffService.updateTariff(tariff)
     }
+  }
+
+
+  compareSelectedTariffs(){
+
   }
 }

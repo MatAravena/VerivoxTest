@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 })
 export class TariffComparitionComponent {
   tariffs$!: Observable<Tariff[]>;
+  tariffsLength = 0
 
   constructor(private tariffService: TariffService) {}
 
@@ -27,17 +28,8 @@ export class TariffComparitionComponent {
         tariffs.sort((a, b) =>  a.price - b.price)
                 .filter(tariff  => tariff.selected === true) )
     );
-  }
 
-  addToCompare(tariff: Tariff) {
-    let totalSelected = 0
     this.tariffs$.pipe(map(tariffs => tariffs.filter(tariff => tariff.selected === true).length))
-      .subscribe(count => totalSelected = count);
-
-    if (totalSelected < 3 || tariff.selected ) {
-      tariff.selected = !tariff.selected
-      this.tariffService.updateTariff(tariff)
-    }
+    .subscribe(count => this.tariffsLength = count);
   }
-  
 }

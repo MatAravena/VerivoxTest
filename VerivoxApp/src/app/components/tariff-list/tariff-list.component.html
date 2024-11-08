@@ -1,42 +1,32 @@
-<div class="tariff-list">
+<!-- <div class="tariff-list"> -->
+  <div class="tariff-list-container" [formGroup]="tariffForm">
+    <div class="titleSection">
+      <h2>Select Tariffs to compare</h2>
 
-  <div class="titleSection">
-    <h4>Available Tariffs</h4>
+      <div class="compare-button-container" *ngIf="totalSelected > 0">
+        <button routerLink="/compare" routerLinkActive="active">Compare Selected Tariffs ({{ totalSelected }})</button>
+      </div>
 
-    <button (click)="sortTariffs()">
-      Sort by Price ({{ sortAscending ? 'Ascending' : 'Descending' }})
-    </button>
+      <button (click)="sortTariffs()">
+        Sort by Price ({{ sortAscending ? 'Ascending' : 'Descending' }})
+      </button>
+    </div>
 
+    <div class="tariff-card-list">
+      <div class="tariff-card" *ngFor="let tariff of tariffs$ | async;">
+
+        <div class="content"> 
+          <h3>{{ tariff.name }}</h3>
+          <p><strong>Price:</strong> {{ tariff.price }} €</p>
+          <p><strong>Supplier:</strong> {{ tariff.supplier }}</p>
+          <p><strong>Description:</strong> {{ tariff.description }}</p>
+        </div>
+
+        <div class="action-buttons">  
+          <button *ngIf="!tariff.selected"  type="button" class="btn btn-success" (click)="addToCompare(tariff)">Add to Compare</button>
+          <button *ngIf="tariff.selected" type="button" class="btn btn-secondary" (click)="addToCompare(tariff)">Remove</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="table-responsive">
-    <table class="table table-striped innerTable">
-      <thead class="bg-light">
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Price</th> 
-          <th scope="col">Supplier </th> 
-          <th scope="col">Description</th>
-          <th scope="col">Active to Compare</th> 
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let tariff of tariffs$ | async" class="bg-light">
-          <th width="20%"><p class="fw-bold mb-1">{{tariff.name}}</p></th>
-          <td width="15%">
-            <p class="fw-normal mb-1">{{tariff.price}}</p>
-          </td>
-          <td width="15%">
-            <p class="fw-normal mb-1">{{tariff.supplier}}</p>
-          </td>
-          <td width="30%">
-            <p class="fw-normal mb-1">{{tariff.description}}</p>
-          </td>
-          <td width="15%">
-            <button *ngIf="!tariff.selected"  type="button" class="btn btn-success" (click)="addToCompare(tariff)">Add to Compare</button>
-            <button *ngIf="tariff.selected" type="button" class="btn btn-secondary" (click)="addToCompare(tariff)">Remove</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<!-- </div> -->

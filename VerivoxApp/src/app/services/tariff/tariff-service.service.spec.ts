@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TariffServiceService } from './tariff-service.service';
+import { TariffService } from './tariff-service.service';
 
-describe('TariffServiceService', () => {
-  let service: TariffServiceService;
+describe('TariffService', () => {
+  let service: TariffService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TariffServiceService);
+    service = TestBed.inject(TariffService);
   });
 
   it('should be created', () => {
