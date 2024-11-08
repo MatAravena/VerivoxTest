@@ -1,6 +1,12 @@
 # VerivoxTest 
-<br /> 
+<br />
+  
 For more details, see the [Project Documentation](./Developing%20an%20Angular%20Application%20for%20Comparing%20Electricity%20Tariffs.pdf)
+<br />
+For more details, see the [Project Documentation](https://github.com/MatAravena/VerivoxTest/blob/main/Developing%20an%20Angular%20Application%20for%20Comparing%20Electricity%20Tariffs.pdf)
+<br />
+<a href="/MatAravena/VerivoxTest/blob/main/Developing%20an%20Angular%20Application%20for%20Comparing%20Electricity%20Tariffs.pdf" target="_blank">PDF.</a>
+<br /> 
 
 <br />
 <br />
