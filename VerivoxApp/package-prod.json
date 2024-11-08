@@ -4,9 +4,16 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build",
-    "start": "ng serve --host 0.0.0.0 --port 4200",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "serve:ssr:VerivoxApp": "node dist/verivox-app/server/server.mjs",
+
+    "start": "ng serve --host 0.0.0.0",
+    "build:ssr": "ng run VerivoxApp:server:production",
+    "build:prod": "ng build --configuration=production && npm run build:ssr",
+    
+    "serve:ssr": "node dist/verivox-app-server/main.js",
+    "dev:ssr": "ng serve --configuration=development",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
