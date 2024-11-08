@@ -1,6 +1,6 @@
 <div class="mainContainer"> 
     <div class="compare-container" *ngIf="tariffsLength > 0">
-        <h2>Compare Selected Tariffs</h2>
+        <h2 *ngIf="tariffsLength > 0">Compare Selected Tariffs</h2>
     
         <div class="tariff-cards">
             <div class="tariff-card" *ngFor="let tariff of tariffs$ | async">

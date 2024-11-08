@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Tariff } from '../../models/tariff';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MOCK_TARIFFS } from '../../mock/mockTariffs';
-import { BehaviorSubject, catchError, finalize, map, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,7 @@ export class TariffService {
         return this.tariffs$;
     }
 
-    updateTariff(updatedTariff: Tariff ){ 
+    updateTariff(updatedTariff: Tariff ){
         const currentTariffs = this.tariffs$.getValue();
         const index = currentTariffs.findIndex(tariff => tariff.id === updatedTariff.id);
         if (index !== -1) { 
@@ -31,17 +31,18 @@ export class TariffService {
             this.tariffs$.next([...currentTariffs]);
         }
     }
-
-    getAllTariffs(): Observable<Tariff[]> {
-        return this.http.get<Tariff[]>('api/getAllTariffs').pipe(
-            finalize(() => console.log('Fetched tariffs 1')),
-            catchError(this.handleError<Tariff[]>('getAllTariffs', []))
-          );
+ 
+    // As the in-memory-service did not work 
+    // getAllTariffs(): Observable<Tariff[]> {
+        // return this.http.get<Tariff[]>('api/getAllTariffs').pipe(
+        //     finalize(() => console.log('Fetched tariffs 1')),
+        //     catchError(this.handleError<Tariff[]>('getAllTariffs', []))
+        //   );
         // return this.http.get<Tariff[]>(this.tariffsUrl).pipe(
         //     finalize(() => console.log('Fetched tariffs 1')),
         //     catchError(this.handleError<Tariff[]>('getAllTariffs', []))
         // );
-    }
+    // }
 
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {

@@ -40,19 +40,20 @@ export class TariffListComponent {
       .subscribe(count => this.totalSelected = count);
   }
 
-  getAllTariffs() {
-    const observer = {
-      next: (data: Tariff[]) => {
-        console.log('Fetched tariffs 2');
-        console.log('result data ',data )
-        // this.tariffs$ = data;
-      },
-      error: (error: any) => console.error('Error fetching tariffs', error),
-      complete: () => console.log('Completed fetching tariffs')
-    };
+  //Remove as is not used Httpclient
+  // getAllTariffs() {
+  //   const observer = {
+  //     next: (data: Tariff[]) => {
+  //       console.log('Fetched tariffs 2');
+  //       console.log('result data ',data )
+  //       // this.tariffs$ = data;
+  //     },
+  //     error: (error: any) => console.error('Error fetching tariffs', error),
+  //     complete: () => console.log('Completed fetching tariffs')
+  //   };
 
-    this.tariffService.getAllTariffs().subscribe(observer);
-  }
+  //   this.tariffService.getListTariffs().subscribe(observer);
+  // }
 
   sortTariffs() {
     this.sortAscending = !this.sortAscending;
@@ -60,15 +61,9 @@ export class TariffListComponent {
   }
 
   addToCompare(tariff: Tariff) {
-
     if (this.totalSelected < 3 || tariff.selected ) {
       tariff.selected = !tariff.selected
       this.tariffService.updateTariff(tariff)
     }
-  }
-
-
-  compareSelectedTariffs(){
-
   }
 }
