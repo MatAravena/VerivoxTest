@@ -13,16 +13,15 @@ git clone https://github.com/MatAravena/VerivoxTest.git
 cd VerivoxApp
 ### Install the required dependencies:
 npm install
-### Run locally the 
+### Run locally the application
 npm start
 ### Test the web application
 http://localhost:4200
 
-
 <br />
 <br />
 
-## To create docker image, use one of them
+## To create docker image
 docker build -t verivox-app .
 ## Run docker container
 docker run -d -p 4200:4200 verivox-app
