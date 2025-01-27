@@ -70,7 +70,7 @@ describe('TariffComparitionComponent', () => {
       fixture.detectChanges();
 
       const noTariffsMessage = fixture.debugElement.query(By.css('h2')).nativeElement;
-      fixture.detectChanges(); 
+      fixture.detectChanges();
       expect(noTariffsMessage.textContent).toContain('No tariffs selected for comparison.');
     });
   });

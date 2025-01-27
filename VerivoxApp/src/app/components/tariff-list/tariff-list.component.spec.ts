@@ -75,7 +75,7 @@ describe('TariffListComponent', () => {
     it('should display a button to sort tariffs by price', () => {
       fixture.detectChanges();
       const button = fixture.debugElement.query(By.css('.titleSection button')).nativeElement;
-      expect(button.textContent).toContain('Sort by Price');
+      expect(button.textContent).toContain('Sort by Price'); 
     });
   });
 

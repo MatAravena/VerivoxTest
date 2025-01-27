@@ -5,8 +5,6 @@ export interface Environments {
     description: string;
 }
 
-
-
 export const environments : Environments[]= [
     {
         name: 'production',

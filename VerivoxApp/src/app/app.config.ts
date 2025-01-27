@@ -25,6 +25,7 @@ export const appConfig: ApplicationConfig = {
       )
      ),
     // Inner services, not sure if this is mandatory for the new angular 18
-    TariffService, InMemoryDataService
+    TariffService,
+    InMemoryDataService
   ]
 };
